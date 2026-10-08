@@ -1,0 +1,237 @@
+@use "../helpers" as *;
+@use "../variables" as *;
+
+.header {
+  width: 100%;
+  background-color: $white-color;
+
+  &__top {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  &__row {
+    @include flex(row, space-between, center);
+    width: 100%;
+
+    &--utilities {
+      height: to-rem(50);
+      border-bottom: to-rem(1) solid $black-light-color;
+    }
+
+    &--content {
+      height: to-rem(85);
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      width: 100%;
+    }
+  }
+
+  &__group-left,
+  &__group-right,
+  &__info-widget {
+    @include flex(row, flex-start, center, 24);
+  }
+
+  &__burger {
+    @include flex(row, flex-start, center, 8);
+    font-weight: 900;
+    font-size: to-rem(14);
+    line-height: 1.43;
+    color: $grey-color-sec;
+    height: 100%;
+    width: to-rem(105);
+    border-right: to-rem(1) solid $black-light-color;
+    flex-shrink: 0;
+
+    &-line {
+      position: relative;
+      width: to-rem(16);
+      height: to-rem(2);
+      background-color: currentColor;
+
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: currentColor;
+      }
+      &::before {
+        top: to-rem(-5);
+      }
+      &::after {
+        bottom: to-rem(-5);
+      }
+    }
+  }
+
+  &__search {
+    @include flex(row, flex-start, center, 10);
+    padding-left: to-rem(24);
+    flex-shrink: 0;
+
+    &-input {
+      border: none;
+      background-color: transparent;
+      font-size: to-rem(14);
+      line-height: 1.43;
+      width: to-rem(100);
+      &:focus {
+        outline: none;
+      }
+    }
+
+    &-btn {
+      @include flex;
+    }
+  }
+
+  &__promo-widget {
+    grid-column: 1;
+    justify-self: start;
+
+    @include flex(row, flex-start, center, 15);
+    flex-shrink: 0;
+
+    &-img {
+      object-fit: contain;
+      flex-shrink: 0;
+      max-height: to-rem(42);
+    }
+
+    &-text {
+      font-size: to-rem(14);
+      color: $grey-color-primary;
+      max-width: to-rem(203);
+      line-height: 1.43;
+    }
+  }
+
+  &__logo {
+    grid-column: 2;
+    justify-self: center;
+
+    flex-shrink: 0;
+  }
+
+  &__info-widget {
+    grid-column: 3;
+    justify-self: end;
+
+    @include flex(row, flex-end, center, 24);
+    flex-shrink: 0;
+  }
+
+  &__date,
+  &__weather {
+    font-size: to-rem(14);
+    line-height: 1.43;
+    color: $grey-color-primary;
+  }
+
+  &__weather {
+    @include flex(row, flex-start, center, 10);
+  }
+
+  &__subscribe-box {
+    @include flex(row, flex-start, center, 8);
+    text-decoration: none;
+  }
+
+  &__subscribe-info {
+    @include flex(column, center, flex-start);
+    line-height: 1.2;
+  }
+
+  &__subscribe-title {
+    font-size: to-rem(12);
+    font-weight: 900;
+    line-height: 1.25;
+    color: $grey-color-sec;
+  }
+
+  &__subscribe-subtitle {
+    font-size: to-rem(12);
+    font-weight: 400;
+    line-height: 1.25;
+    color: $grey-span-color;
+  }
+
+  &__login {
+    @include flex(row, flex-start, center, 10);
+    font-size: to-rem(14);
+    color: $grey-color-primary;
+
+    @include hover {
+      color: $blue-color;
+    }
+  }
+
+  &__bottom {
+    height: to-rem(55);
+    background-color: $grey-color-sec;
+    @include flex(row, center, center);
+  }
+
+  &__menu {
+    @include flex(row, space-between, center, 46);
+    width: 100%;
+
+    &-link {
+      font-size: to-rem(14);
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 1.43;
+      letter-spacing: 0.04em;
+      color: $white-color;
+
+      @include hover {
+        color: $blue-color;
+      }
+    }
+  }
+}
+
+@include respond-to("tablet") {
+  .header {
+    &__row {
+      &--content {
+        height: auto;
+        padding-block: to-rem(15);
+        display: flex;
+        flex-direction: column;
+        gap: to-rem(15);
+      }
+    }
+
+    &__promo-widget {
+      padding-left: 0;
+      justify-content: center;
+    }
+
+    &__info-widget {
+      justify-content: center;
+    }
+
+    &__subscribe-box,
+    &__date {
+      display: none;
+    }
+
+    &__bottom {
+      height: auto;
+      padding-block: to-rem(15);
+    }
+
+    &__menu {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: to-rem(10) to-rem(15);
+    }
+  }
+}

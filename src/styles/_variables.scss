@@ -1,0 +1,34 @@
+@use "helpers/functions" as *;
+
+// Сетка
+$container-width: 1140;
+$container-padding-x: 15;
+
+// Анимации
+$transition-duration: 0.3s;
+$transition-base: all $transition-duration ease-in-out;
+
+// Шрифты
+$font-family: "Lato", sans-serif;
+$second-font: "Roboto Slab", sans-serif;
+
+// ==========================================================================
+// ЦВЕТОВАЯ ПАЛИТРА (UI-KIT) — ПРОЕКТ UNIVERSAL
+// ==========================================================================
+$bg-color: #edeff0;
+$white-color: #fff;
+$white-color-opacity: rgba(255, 255, 255, 0.4);
+$grey-color-primary: #4b5157;
+$grey-color-sec: #262d33;
+$blue-color: #4592ff;
+$green-color: #3dc47e;
+$greyblue-color: #6e99ae;
+$bluegreen-color: #3bbdc4;
+$purple-color: #ac8ee3;
+$orange-color: #ffa34d;
+$red-color: #ff4f52;
+$red-color-accent: #eb5757;
+$black-dark-color: #262d33;
+$black-light-color: #e5e5e5;
+$grey-color: #d9dadb;
+$grey-span-color: #939699;

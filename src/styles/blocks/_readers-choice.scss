@@ -1,0 +1,282 @@
+@use "sass:color";
+@use "../helpers" as *;
+@use "../variables" as *;
+
+.choice {
+  background-color: $grey-color-sec;
+  padding-block: to-rem(60);
+  width: 100%;
+
+  &__container {
+    display: grid;
+    grid-template-columns: to-rem(555) 1fr;
+    gap: to-rem(30);
+    align-items: stretch;
+  }
+
+  &__gallery {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: to-rem(8);
+    padding: to-rem(30) to-rem(25) to-rem(35) to-rem(25);
+    @include flex(column, space-between, center);
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.6) 0%,
+        rgba(0, 0, 0, 0.25) 100%
+      );
+      z-index: 1;
+    }
+
+    & > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    &-header {
+      @include flex(row, space-between, flex-start);
+      width: 100%;
+    }
+
+    .choice__badge {
+      background-color: $red-color-accent;
+      color: $white-color;
+      padding: to-rem(5) to-rem(12);
+      border-radius: to-rem(3);
+      font-size: to-rem(12);
+      font-weight: 900;
+      line-height: 1.25;
+    }
+
+    &-author {
+      @include flex(column, center, center, 5);
+      text-align: center;
+      color: $white-color;
+      margin-inline: auto;
+    }
+
+    &-author-meta {
+      @include flex(column, center, center, 2);
+    }
+
+    &-avatar {
+      border-radius: 50%;
+      border: to-rem(2) solid rgba(255, 255, 255, 0.3);
+    }
+
+    &-author-name {
+      font-size: to-rem(14);
+      opacity: 0.85;
+    }
+
+    &-author-role {
+      font-size: to-rem(12);
+      opacity: 0.4;
+    }
+
+    &-body {
+      @include flex(column, center, center, 25);
+      text-align: center;
+      width: 100%;
+      max-width: to-rem(455);
+      margin-top: to-rem(30);
+      margin-bottom: to-rem(40);
+    }
+
+    &-title {
+      font-family: $second-font;
+      font-size: to-rem(40);
+      font-weight: 700;
+      line-height: 1.25;
+      color: $white-color;
+    }
+
+    &-btn {
+      background-color: $blue-color;
+      color: $white-color;
+      padding: to-rem(10) to-rem(25);
+      border-radius: to-rem(20);
+      font-size: to-rem(14);
+      font-weight: 900;
+      text-decoration: none;
+      @include flex(row, center, center, 8);
+
+      &-count {
+        opacity: 0.5;
+        font-weight: 400;
+        margin-left: to-rem(4);
+      }
+      @include hover {
+        background-color: color.adjust($blue-color, $lightness: -10%);
+      }
+    }
+
+    &-slider-dots {
+      @include flex(row, center, center, 8);
+      width: 100%;
+      margin-top: auto;
+      height: to-rem(15);
+    }
+
+    .choice__dot {
+      width: to-rem(8);
+      height: to-rem(8);
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.4);
+      cursor: pointer;
+      display: inline-block;
+      flex-shrink: 0;
+
+      &--active {
+        background-color: $white-color;
+      }
+    }
+  }
+
+  &__content {
+    display: grid;
+    grid-template-rows: to-rem(370) to-rem(170);
+    gap: to-rem(30);
+  }
+
+  &__interview {
+    background-color: #b4d1e2;
+    border-radius: to-rem(8);
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    overflow: hidden;
+    height: 100%;
+
+    &-body {
+      padding: to-rem(35) to-rem(20) to-rem(35) to-rem(35);
+      @include flex(column, space-between, flex-start);
+      height: 100%;
+    }
+
+    &-category {
+      font-size: to-rem(12);
+      font-weight: 900;
+      text-transform: uppercase;
+      color: #6b8fa6;
+      letter-spacing: 0.05em;
+    }
+
+    &-title {
+      font-family: $second-font;
+      font-size: to-rem(25);
+      font-weight: 700;
+      line-height: 1.2;
+      color: $grey-color-sec;
+      margin-block: to-rem(15) to-rem(10);
+    }
+
+    &-excerpt {
+      font-size: to-rem(14);
+      line-height: 1.43;
+      color: $grey-color-primary;
+      margin-bottom: to-rem(20);
+    }
+
+    &-btn {
+      background-color: $blue-color;
+      color: $white-color;
+      padding: to-rem(10) to-rem(25);
+      border-radius: to-rem(20);
+      font-size: to-rem(14);
+      font-weight: 900;
+      text-decoration: none;
+      @include flex(row, center, center, 8);
+      @include hover {
+        background-color: color.adjust($blue-color, $lightness: -10%);
+      }
+    }
+
+    &-img-wrapper {
+      width: 100%;
+      height: 100%;
+      @include flex(row, flex-end, flex-end);
+
+      .choice__interview-img {
+        max-height: 100%;
+        object-fit: contain;
+      }
+    }
+  }
+
+  &__sub-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: to-rem(30);
+    height: 100%;
+  }
+
+  &__text-card {
+    background-color: $white-color;
+    border-radius: to-rem(8);
+    padding: to-rem(25) to-rem(30);
+    @include flex(column, space-between, flex-start);
+    height: 100%;
+
+    &-title {
+      font-family: $second-font;
+      font-size: to-rem(16);
+      font-weight: 700;
+      line-height: 1.38;
+      color: $grey-color-sec;
+      margin: 0;
+    }
+
+    &-excerpt {
+      font-size: to-rem(14);
+      line-height: 1.43;
+      color: $grey-color-primary;
+      margin-block: to-rem(10);
+    }
+
+    &-date {
+      font-size: to-rem(12);
+      color: $grey-span-color;
+    }
+  }
+}
+
+@include respond-to("desktop-sm") {
+  .choice {
+    &__container {
+      grid-template-columns: 1fr;
+      min-height: auto;
+    }
+    &__content {
+      grid-template-rows: auto auto;
+    }
+    &__interview {
+      grid-template-columns: 1fr;
+      &-img-wrapper {
+        display: none;
+      }
+    }
+  }
+}
+
+@include respond-to("tablet-sm") {
+  .choice {
+    &__sub-grid {
+      grid-template-columns: 1fr;
+    }
+    &__gallery {
+      padding: to-rem(20);
+      &-title {
+        font-size: to-rem(22);
+      }
+    }
+  }
+}

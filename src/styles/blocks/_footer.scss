@@ -1,0 +1,225 @@
+@use "sass:color";
+@use "../helpers" as *;
+@use "../variables" as *;
+
+.footer {
+  background-color: $white-color;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.subscribe-block {
+  padding-block: to-rem(60) to-rem(70);
+  text-align: center;
+  width: 100%;
+
+  &__container {
+    @include flex(column, center, center, 25);
+  }
+
+  &__title {
+    font-family: $second-font;
+    @include fluid-text(40, 24);
+    font-weight: 700;
+    color: $grey-color-sec;
+    margin: 0;
+  }
+
+  &__form {
+    @include flex(row, center, center, 10);
+    width: 100%;
+    max-width: to-rem(450);
+  }
+
+  &__input {
+    flex-grow: 1;
+    height: to-rem(40);
+    padding-inline: to-rem(15);
+    border: to-rem(1) solid $grey-color;
+    border-radius: to-rem(4);
+    font-size: to-rem(14);
+    color: $grey-color-sec;
+
+    &:focus {
+      outline: none;
+      border-color: $blue-color;
+    }
+  }
+
+  &__btn {
+    background-color: $blue-color;
+    color: $white-color;
+    height: to-rem(40);
+    padding-inline: to-rem(25);
+    border-radius: to-rem(20);
+    font-size: to-rem(14);
+    font-weight: 900;
+
+    @include hover {
+      background-color: color.adjust($blue-color, $lightness: -10%);
+    }
+  }
+}
+
+.footer__color-line {
+  height: to-rem(5);
+  width: 100%;
+  background: linear-gradient(
+    to right,
+    $red-color 0%,
+    $red-color 20%,
+    $purple-color 20%,
+    $purple-color 40%,
+    $blue-color 40%,
+    $blue-color 60%,
+    $orange-color 60%,
+    $orange-color 80%,
+    $green-color 80%,
+    $green-color 100%
+  );
+  margin-bottom: to-rem(45);
+}
+
+.footer__nav-grid {
+  @include grid(6, 30);
+  border-bottom: to-rem(1) solid $black-light-color;
+  padding-bottom: to-rem(45);
+}
+
+.footer__col-title {
+  font-size: to-rem(14);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: to-rem(20);
+  position: relative;
+  padding-top: to-rem(5);
+}
+
+.footer__col-list {
+  @include flex(column, flex-start, flex-start, 12);
+
+  a {
+    font-size: to-rem(14);
+    color: $grey-color-primary;
+    @include hover {
+      color: $blue-color;
+    }
+  }
+}
+
+.footer__middle-bar {
+  @include flex(row, space-between, center);
+  padding-top: to-rem(30);
+  padding-block: to-rem(30);
+  border-bottom: to-rem(1) solid $black-light-color;
+}
+
+.footer__left-group {
+  @include flex(row, flex-start, center, 30);
+}
+
+.footer__logo {
+  background-color: $blue-color;
+  color: $white-color;
+  font-weight: 900;
+  font-size: to-rem(18);
+  width: to-rem(45);
+  height: to-rem(45);
+  border-radius: 50%;
+  @include flex;
+  letter-spacing: 0.02em;
+}
+
+.footer__sub-nav {
+  @include flex(row, flex-start, center, 20, wrap);
+
+  a {
+    font-size: to-rem(14);
+    font-weight: 900;
+    text-transform: uppercase;
+    color: $grey-color-sec;
+    letter-spacing: 0.05em;
+    @include hover {
+      color: $blue-color;
+    }
+  }
+}
+
+.footer__socials {
+  @include flex(row, flex-end, center, 15);
+}
+
+.footer__social-link {
+  width: to-rem(40);
+  height: to-rem(40);
+  border-radius: 50%;
+  @include flex;
+  color: $white-color;
+  transition: transform $transition-duration;
+
+  &--fb {
+    background-color: #4267b2;
+  }
+  &--tw {
+    background-color: #1da1f2;
+  }
+  &--yt {
+    background-color: #ff0000;
+  }
+  &--inst {
+    background-color: #e1306c;
+  }
+
+  @include hover {
+    transform: translateY(to-rem(-3));
+  }
+}
+
+.footer__bottom-bar {
+  @include flex(row, space-between, flex-start, 30);
+  padding-block: to-rem(30) to-rem(40);
+  font-size: to-rem(13);
+  line-height: 1.54;
+  color: $grey-span-color;
+}
+
+.footer__copyright-text {
+  max-width: to-rem(750);
+  margin: 0;
+}
+
+.footer__copyright-year {
+  white-space: nowrap;
+}
+
+@include respond-to("desktop-sm") {
+  .footer {
+    &__nav-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: to-rem(40);
+    }
+    &__bottom-bar {
+      flex-direction: column;
+      gap: to-rem(15);
+    }
+  }
+}
+
+@include respond-to("tablet-sm") {
+  .footer {
+    &__nav-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    &__middle-bar {
+      flex-direction: column;
+      gap: to-rem(25);
+      text-align: center;
+    }
+    .footer__left-group {
+      flex-direction: column;
+      gap: to-rem(15);
+    }
+  }
+}

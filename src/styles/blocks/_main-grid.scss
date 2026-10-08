@@ -1,0 +1,404 @@
+@use "sass:color";
+@use "../helpers" as *;
+@use "../variables" as *;
+
+.main-grid {
+  background-color: $bg-color;
+  padding-block: to-rem(60);
+  width: 100%;
+
+  &__container {
+    display: grid;
+    grid-template-columns: 1fr to-rem(263);
+    gap: to-rem(30);
+  }
+
+  &__feed {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: to-rem(370) to-rem(170) to-rem(170);
+    gap: to-rem(30);
+    grid-template-areas:
+      "car car tattoo"
+      "cat coffee manufacture"
+      "cat stress lemon";
+  }
+}
+
+.card {
+  background-color: $white-color;
+  border-radius: to-rem(8);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: 0 to-rem(4) to-rem(20) rgba(0, 0, 0, 0.02);
+
+  &__body {
+    padding: to-rem(25) to-rem(25) 0;
+    flex-grow: 1;
+  }
+
+  &__title {
+    font-family: $second-font;
+    font-size: to-rem(25);
+    font-weight: 700;
+    line-height: 1.2;
+    color: $grey-color-sec;
+    margin-top: to-rem(20);
+
+    &--small {
+      font-size: to-rem(16);
+      line-height: 1.38;
+      margin-top: 0;
+    }
+
+    &--white {
+      color: $white-color;
+      font-size: to-rem(20);
+      line-height: 1.25;
+      letter-spacing: 0.03em;
+    }
+  }
+
+  &__excerpt {
+    font-size: to-rem(14);
+    line-height: 1.43;
+    color: $grey-color-primary;
+    margin-top: to-rem(25);
+  }
+
+  &__footer {
+    padding: to-rem(12) to-rem(25);
+    border-top: to-rem(1) solid $black-light-color;
+    @include flex(row, space-between, center);
+    width: 100%;
+    background-color: $white-color;
+  }
+
+  &__author-box {
+    @include flex(row, flex-start, center, 10);
+
+    &--white {
+      color: $white-color;
+    }
+  }
+
+  &__avatar {
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  &__author-text {
+    font-size: to-rem(14);
+    line-height: 1.43;
+    color: $grey-color-primary;
+
+    strong {
+      color: $grey-color-sec;
+      font-weight: 900;
+    }
+  }
+
+  &__comments {
+    @include flex(row, flex-start, center, 5);
+    font-size: to-rem(12);
+    line-height: 1.25;
+    color: $grey-span-color;
+    font-weight: 400;
+  }
+
+  &__category {
+    font-size: to-rem(12);
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 1.25;
+    letter-spacing: 0.04em;
+
+    &--cars {
+      color: $greyblue-color;
+    }
+    &--art {
+      color: $green-color;
+    }
+  }
+
+  &__img-wrapper {
+    @include flex;
+    overflow: hidden;
+
+    .card__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &--horizontal {
+    grid-area: car;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    align-items: center;
+    height: 100%;
+
+    .card__body {
+      padding-bottom: to-rem(25);
+    }
+
+    .card__footer {
+      grid-column: span 2;
+    }
+  }
+
+  &--featured {
+    grid-area: tattoo;
+    background-size: cover;
+    background-position: center;
+    padding: to-rem(25);
+    @include flex(column, space-between, flex-start);
+    height: 100%;
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      z-index: 1;
+    }
+
+    .card__badge {
+      position: relative;
+      z-index: 2;
+      background-color: $green-color;
+      color: $white-color;
+      padding: to-rem(5) to-rem(12);
+      border-radius: to-rem(3);
+      font-size: to-rem(12);
+      line-height: 1.25;
+      font-weight: 900;
+    }
+
+    .card__featured-content,
+    .card__author-box {
+      position: relative;
+      z-index: 2;
+    }
+
+    .card__featured-content {
+      margin-top: auto;
+      margin-bottom: to-rem(30);
+    }
+
+    .card__author-info {
+      @include flex(column, center, flex-start, 2);
+    }
+
+    .card__author-name {
+      font-size: to-rem(14);
+      font-weight: 400;
+      line-height: 1.43;
+      opacity: 0.85;
+    }
+
+    .card__meta {
+      @include flex(row, flex-start, center, 10);
+      font-size: to-rem(12);
+      line-height: 1.25;
+      opacity: 0.4;
+    }
+  }
+
+  &--vertical {
+    grid-area: cat;
+    height: 100%;
+    @include flex(column, space-between, stretch);
+
+    .card__body {
+      padding: to-rem(15) to-rem(25) to-rem(25);
+      background-color: $white-color;
+      flex-grow: 1;
+      @include flex(column, justify-content, flex-start);
+    }
+
+    .card__img-wrapper--top {
+      height: to-rem(275);
+      width: 100%;
+
+      .card__img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  &--coffee {
+    grid-area: coffee;
+  }
+  &--stress {
+    grid-area: stress;
+  }
+  &--manufacture {
+    grid-area: manufacture;
+  }
+  &--lemon {
+    grid-area: lemon;
+  }
+
+  &--text-only {
+    padding: to-rem(25);
+    @include flex(column, space-between, flex-start);
+    height: 100%;
+
+    .card__date {
+      font-size: to-rem(12);
+      color: $grey-span-color;
+      margin-top: to-rem(10);
+    }
+  }
+}
+
+.widget-columns {
+  background-color: $greyblue-color;
+  border-radius: to-rem(8);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  &__heading {
+    font-size: to-rem(14);
+    font-weight: 900;
+    text-transform: uppercase;
+    color: $white-color;
+    letter-spacing: 0.04em;
+    padding: to-rem(20) to-rem(25);
+    border-bottom: to-rem(1) solid rgba(255, 255, 255, 0.15);
+    margin: 0;
+  }
+
+  &__feed {
+    padding-inline: to-rem(25);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-block: to-rem(20);
+  }
+
+  &__more {
+    border-top: to-rem(1) solid rgba(255, 255, 255, 0.15);
+    padding-block: to-rem(14);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    color: $white-color;
+    font-weight: 900;
+    font-size: to-rem(14);
+    line-height: 1.43;
+    width: 100%;
+    margin-top: auto;
+
+    @include hover {
+      background-color: rgba(255, 255, 255, 0.08);
+    }
+  }
+}
+
+.column-item {
+  position: relative;
+  padding-top: to-rem(45);
+  padding-bottom: to-rem(45);
+  width: 100%;
+  border-bottom: to-rem(1) solid rgba(255, 255, 255, 0.15);
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: to-rem(10);
+  }
+
+  &:first-child {
+    padding-top: to-rem(10);
+  }
+
+  &::before {
+    content: "“";
+    position: absolute;
+    left: to-rem(-5);
+    top: to-rem(10);
+    font-size: to-rem(70);
+    font-family: serif;
+    color: rgba(255, 255, 255, 0.12);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  &__quote {
+    font-family: $second-font;
+    font-size: to-rem(20);
+    font-weight: 700;
+    line-height: 1.25;
+    color: $white-color;
+    margin-bottom: to-rem(15);
+    position: relative;
+    z-index: 2;
+  }
+
+  &__author {
+    @include flex(row, flex-start, center, 10);
+  }
+
+  &__avatar {
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  &__author-info {
+    @include flex(column, center, flex-start, 2);
+    line-height: 1.2;
+  }
+
+  &__name {
+    font-size: to-rem(14);
+    font-weight: 400;
+    line-height: 1.43;
+    color: #d1e2eb;
+  }
+
+  &__role {
+    font-size: to-rem(12);
+    font-weight: 400;
+    line-height: 1.25;
+    color: #d1e2eb;
+  }
+}
+
+@include respond-to("desktop-sm") {
+  .main-grid {
+    &__container {
+      grid-template-columns: 1fr;
+    }
+    &__feed {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .card--horizontal {
+      grid-column: span 2;
+    }
+    .card--featured {
+      grid-column: span 2;
+      grid-row: span 1;
+    }
+  }
+}
+
+@include respond-to("tablet") {
+  .main-grid__feed {
+    grid-template-columns: 1fr;
+  }
+  .card--horizontal {
+    grid-template-columns: 1fr;
+  }
+}

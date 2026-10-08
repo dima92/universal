@@ -1,0 +1,87 @@
+@use "../helpers" as *;
+@use "../variables" as *;
+
+.header__burger {
+  &--active {
+    .header__burger-line {
+      background-color: transparent;
+      &::before {
+        transform: rotate(45deg);
+        top: 0;
+      }
+      &::after {
+        transform: rotate(-45deg);
+        bottom: 0;
+      }
+    }
+  }
+}
+
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  visibility: hidden;
+  opacity: 0;
+  transition:
+    opacity $transition-duration,
+    visibility $transition-duration;
+
+  &--open {
+    visibility: visible;
+    opacity: 1;
+
+    .mobile-menu__content {
+      transform: translateX(0);
+    }
+  }
+
+  &__backdrop {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+  }
+
+  &__content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    max-width: to-rem(320);
+    background-color: $grey-color-sec;
+    padding: to-rem(40) to-rem(30);
+    transform: translateX(-100%);
+    transition: transform $transition-duration ease-in-out;
+    @include flex(column, flex-start, stretch);
+  }
+
+  &__close {
+    align-self: flex-end;
+    font-size: to-rem(36);
+    color: $white-color;
+    line-height: 1;
+    margin-bottom: to-rem(30);
+    @include hover {
+      color: $blue-color;
+    }
+  }
+
+  &__list {
+    @include flex(column, flex-start, stretch, 20);
+  }
+
+  &__link {
+    font-size: to-rem(18);
+    font-weight: 700;
+    color: $white-color;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: block;
+
+    @include hover {
+      color: $blue-color;
+    }
+  }
+}
